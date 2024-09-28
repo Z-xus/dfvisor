@@ -6,17 +6,15 @@ export function validateDFAStructure(nodes, edges) {
     return { isValid: false, error: "DFA must have exactly one start state." };
   }
 
-  // Check if there's at least one accept state
   if (acceptStates.length === 0) {
     return { isValid: false, error: "DFA must have at least one accept state." };
   }
 
-  // Check if all transitions are deterministic
   const transitionMap = {};
   for (const edge of edges) {
-    const key = `${edge.source}-${edge.id}`;
+    const key = `${edge.source}-${edge.data.label}`;
     if (transitionMap[key]) {
-      return { isValid: false, error: `Multiple transitions found for state ${edge.source} with input ${edge.id}.` };
+      return { isValid: false, error: `Multiple transitions found for state ${edge.source} with input ${edge.data.label}.` };
     }
     transitionMap[key] = edge.target;
   }
@@ -24,14 +22,13 @@ export function validateDFAStructure(nodes, edges) {
   return { isValid: true };
 }
 
-// Simulate running a string through the DFA
 export function runDFA(input, nodes, edges) {
   const startState = nodes.find(node => node.data.isStartState);
   let currentState = startState;
 
   for (const symbol of input) {
     const transition = edges.find(edge => 
-      edge.source === currentState.id && edge.id === symbol
+      edge.source === currentState.id && edge.data.label === symbol
     );
 
     if (!transition) {
@@ -44,7 +41,6 @@ export function runDFA(input, nodes, edges) {
   return { accepted: currentState.data.isAcceptState };
 }
 
-// Main validation function
 export function validateDFA(input, nodes, edges) {
   const structureValidation = validateDFAStructure(nodes, edges);
   if (!structureValidation.isValid) {
@@ -53,3 +49,34 @@ export function validateDFA(input, nodes, edges) {
 
   return runDFA(input, nodes, edges);
 }
+
+
+export function validateInput(input, edges) {
+        let currentState = 0;
+        const transition = edges.find(edge => 
+      edge.source === currentState.id && edge.data.label === symbol
+    );
+
+    
+        for (let i = 0; i < input.length; i++) {
+          const symbol = input[i];
+    
+          if (!transition[currentState]) {
+            return "invalid";
+          }
+    
+          currentState = this.transitions[currentState][symbol];
+    
+          if (currentState === "invalid" || currentState === undefined) {
+            return "invalid";
+          }
+        }
+
+        if (currentState === this.acceptingState) {
+            return "valid";
+        }
+        console.log(currentState);
+        return "invalid";
+        
+    }
+

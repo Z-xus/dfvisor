@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   Background,
   Controls,
@@ -14,7 +14,7 @@ import "@xyflow/react/dist/style.css";
 import { initialNodes, nodeTypes } from "./graphs/nodes";
 import { initialEdges, edgeTypes } from "./graphs/edges";
 import NodeCreatorButton from "./graphs/nodes/NodeCreatorButton";
-import { validateDFA } from "./DFAValidator";
+import { validateDFA, validateInput } from "./DFAValidator";
 
 export default function App() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -22,25 +22,15 @@ export default function App() {
   const [input, setInput] = useState("");
   const [validationResult, setValidationResult] = useState(null);
 
-const [edgeSymbol, setEdgeSymbol] = useState('');
-const [isEdgeFormVisible, setIsEdgeFormVisible] = useState(false);
-const [newEdgeParams, setNewEdgeParams] = useState(null);
-
-
 const onConnect = useCallback((params) => {
-  setIsEdgeFormVisible(true);
-  setNewEdgeParams(params);
-}, [setIsEdgeFormVisible]);
+    const label = prompt("Enter transition symbol (a or b):");
+    if (label === 'a' || label === 'b') {
+      setEdges((eds) => addEdge({ ...params, label, animated: true }, eds));
+    } else {
+      alert("Invalid transition symbol. Use 'a' or 'b'.");
+    }
+  }, [setEdges]);
 
-const handleEdgeSubmit = () => {
-  if (['a', 'b'].includes(edgeSymbol)) {
-    setEdges((eds) => addEdge({ ...newEdgeParams, label: edgeSymbol, animated: true }, eds));
-  } else {
-    alert("Invalid symbol. Use 'a' or 'b'.");
-  }
-  setIsEdgeFormVisible(false);
-  setEdgeSymbol('');
-};
   const colorMode: ColorMode = "dark";
 
 const addNode = useCallback((nodeData) => {
@@ -62,47 +52,15 @@ const addNode = useCallback((nodeData) => {
 }, [nodes, setNodes]);
 
 
+  const handleValidation = () => {
+    // const result = validateDFA(input, nodes, edges);
+    const result = validateInput(input, edges);
 
-const handleValidation = () => {
-  const result = validateDFA(input, nodes, edges);
-  if (!result.isValid) {
-    if (result.error.includes('start state')) {
-      setNodes((nds) => nds.map((node) => {
-        if (node.data.isStartState === false) {
-          return { ...node, style: { borderColor: 'red' } };
-        }
-        return node;
-      }));
-    }
-  }
-  setValidationResult(result);
-};
-  const onEdgeClick = useCallback((event, edge) => {
-  const action = prompt("Enter 'edit' to change symbol, 'delete' to remove edge");
-  if (action === 'edit') {
-    const newSymbol = prompt("Enter new transition symbol (a or b):");
-    if (newSymbol === 'a' || newSymbol === 'b') {
-      setEdges((eds) => eds.map((e) => e.id === edge.id ? { ...e, label: newSymbol } : e));
-    }
-  } else if (action === 'delete') {
-    setEdges((eds) => eds.filter((e) => e.id !== edge.id));
-  }
-}, [setEdges]);
-
-
+    setValidationResult(result);
+  };
 
   return (
     <div style={{ height: "100vh", width: "100vw" }}>
-    {isEdgeFormVisible && (
-  <div className="edge-popup">
-    <select value={edgeSymbol} onChange={(e) => setEdgeSymbol(e.target.value)}>
-      <option value="">Select symbol</option>
-      <option value="a">a</option>
-      <option value="b">b</option>
-    </select>
-    <button onClick={handleEdgeSubmit}>Submit</button>
-  </div>
-)}
       <ReactFlow
         nodes={nodes}
         nodeTypes={nodeTypes}
@@ -112,7 +70,6 @@ const handleValidation = () => {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         colorMode={colorMode}
-        onEdgeClick={onEdgeClick}
         fitView
       >
         <Background />
