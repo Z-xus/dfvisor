@@ -42,12 +42,12 @@ const DFANode = ({ data, isConnectable }) => {
             {data.isAcceptState && (
                 <div style={{
                     position: 'absolute',
-                    top: '8px',
-                    right: '8px',
-                    left: '8px',
-                    bottom: '8px',
+                    top: '4px',
+                    right: '4px',
+                    left: '4px',
+                    bottom: '4px',
                     borderRadius: '50%',
-                    border: '3px solid #333', // Thicker border for visual emphasis
+                    border: '2px solid #777',
                     pointerEvents: 'none',
                     boxShadow: '0 0 15px rgba(0, 0, 0, 0.4)', // Glow effect around accept state
                 }} />
