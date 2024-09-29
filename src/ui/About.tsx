@@ -20,7 +20,6 @@ const TeamMember = ({ name, role, image }) => (
     <p className="text-gray-400">{role}</p>
   </div>
 );
-
 const AboutPage = () => {
   return (
     <div className="w-screen min-h-screen bg-gray-900 text-white">
@@ -33,25 +32,34 @@ const AboutPage = () => {
           
           <AboutSection icon={Book} title="Our Mission">
             <p>
-              At StateCraft, we're passionate about making the complex world of automata theory accessible and engaging for everyone. Our mission is to empower learners, researchers, and enthusiasts with cutting-edge tools and comprehensive resources to explore, understand, and apply the principles of formal languages and computation.
+              At StateCraft, we're dedicated to making the Theory of Computation more accessible, engaging, and easier to grasp for students of all levels. Our mission is to empower learners with innovative tools and interactive visualizations that breathe life into complex topics like finite automata and regular expressions.
             </p>
             <p>
-              We believe that by democratizing access to advanced theoretical concepts, we can foster innovation and drive progress in computer science, linguistics, and related fields.
+              By bridging the gap between abstract concepts and practical understanding, we help students engage with the material intuitively, providing them with the confidence and clarity to master these challenging areas of computer science.
             </p>
           </AboutSection>
           
           <AboutSection icon={History} title="Our Journey">
             <p>
-              Founded in 2020 by a group of computer science professors and industry experts, StateCraft began as a small project to create interactive visualizations for automata theory concepts. As our tools gained popularity among students and researchers, we expanded our platform to include comprehensive learning paths, collaborative features, and powerful simulation capabilities.
+              StateCraft was born from the idea that traditional methods of teaching computational theory—through text and equations alone—aren’t enough for today’s learners. Founded by a team of educators and developers, we set out to create a more dynamic learning experience, combining animations and simulations to make these difficult concepts easier to understand.
             </p>
             <p>
-              Today, StateCraft serves a global community of over 100,000 users, from curious beginners to seasoned professionals, all united by their fascination with the fundamental principles that underlie computation and language.
+              What started as a small project quickly grew into a comprehensive educational platform used by thousands of students globally. Today, StateCraft helps learners visualize and interact with the building blocks of computation, making difficult theories more accessible than ever.
+            </p>
+          </AboutSection>
+          
+          <AboutSection icon={Users} title="Why StateCraft">
+            <p>
+              StateCraft brings Theory of Computation concepts to life through engaging animations and interactive simulations. Our platform helps students better understand finite automata, regular expressions, and more by letting them visualize these concepts in real-time, fostering a deeper and more intuitive understanding.
+            </p>
+            <p>
+              We prioritize accuracy in all our simulations, ensuring that the visualizations and interactions are reliable and grounded in solid theory. Our goal is to create an experience that’s as educational as it is enjoyable, with intuitive UI/UX design that makes the platform easy to use for students of all levels.
             </p>
           </AboutSection>
           
           <AboutSection icon={Users} title="Our Team">
             <p className="mb-6">
-              Behind StateCraft is a diverse team of passionate individuals, each bringing unique expertise and perspective to our mission.
+              The team behind StateCraft is composed of passionate educators, developers, and computer science enthusiasts, all working towards a common goal: making complex theoretical concepts accessible to everyone.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <TeamMember 

@@ -134,18 +134,18 @@ export default function DFAtoUI() {
         onMouseLeave={() => setIsOpen(false)}
       >
         <div className={`p-5 ${isOpen ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300 overflow-y-auto h-full`}>
-          <h3 className="text-lg font-semibold mb-4">Add a State:</h3>
+          <h2 className="text-lg font-semibold mb-4">Add a State:</h2>
           <NodeCreatorButton onAddNode={addNode} />
 
-          <h3 className="text-lg font-semibold mt-6">Add an Edge:</h3>
+          <h2 className="text-lg font-semibold mt-6">Add an Edge:</h2>
 
-          <h3 className="text-lg font-semibold mt-4">Select Start State:</h3>
+          <h2 className="text-lg font-semibold mt-4">Select Start State:</h2>
           <select
             value={startState}
             onChange={(e) => setStartState(e.target.value)}
             className="w-full p-2 border border-gray-600 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <option value="" disabled>Select start state</option>
+            <option value="" disabled>Start state</option>
             {nodes.map(node => (
               <option key={node.id} value={node.id}>
                 {node.data.label} {node.data.isAcceptState ? "(Accept)" : ""}
@@ -153,13 +153,13 @@ export default function DFAtoUI() {
             ))}
           </select>
 
-          <h3 className="text-lg font-semibold mt-4">Select End State:</h3>
+          <h2 className="text-lg font-semibold mt-4">Select End State:</h2>
           <select
             value={endState}
             onChange={(e) => setEndState(e.target.value)}
             className="w-full p-2 border border-gray-600 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <option value="" disabled>Select end state</option>
+            <option value="" disabled>End state</option>
             {nodes.map(node => (
               <option key={node.id} value={node.id}>
                 {node.data.label} {node.data.isAcceptState ? "(Accept)" : ""}
@@ -167,7 +167,7 @@ export default function DFAtoUI() {
             ))}
           </select>
 
-          <h3 className="text-lg font-semibold mt-4">Enter Transition Symbol:</h3>
+          <h2 className="text-lg font-semibold mt-4">Enter Transition Symbol:</h2>
           <input
             type="text"
             value={transitionSymbol}
@@ -190,7 +190,7 @@ export default function DFAtoUI() {
             Delete Elements
           </button>
 
-          <h3 className="text-lg font-semibold mt-6">Validate String:</h3>
+          <h2 className="text-lg font-semibold mt-6">Validate String:</h2>
           <input
             type="text"
             value={input}
