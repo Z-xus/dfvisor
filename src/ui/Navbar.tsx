@@ -11,6 +11,7 @@ const Navbar = () => {
         <div className="flex gap-8">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/about">About</NavLink>
+          <NavLink to="/editor">Editor</NavLink>
         </div>
       </div>
     </nav>

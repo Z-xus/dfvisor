@@ -1,4 +1,4 @@
-import type { Node, NodeTypes, BuiltInNode } from "@xyflow/react";
+import type { Node, NodeTypes } from "@xyflow/react";
 import NodeCreatorButton from "./NodeCreatorButton";
 import DFANode from "./DFANode";
 

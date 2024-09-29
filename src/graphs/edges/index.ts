@@ -10,7 +10,6 @@ export const initialEdges = [
 
 export const edgeTypes = {
     // Add your custom edge types here!
-    //
     animatedSvg: AnimatedSVGEdge,
     selfLoop: SelfConnecting
 } satisfies EdgeTypes;
