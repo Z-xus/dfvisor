@@ -12,7 +12,7 @@ export type AppNode = Node<DFANodeData>;
 
 export const initialNodes: AppNode[] = [
   { id: '1', type: 'dfa', position: { x: 100, y: 100 }, data: { label: 'Start', isStartState: true, isAcceptState: false } },
-  { id: '2', type: 'dfa', position: { x: 300, y: 100 }, data: { label: 'State 2', isStartState: false, isAcceptState: false } },
+  { id: '2', type: 'dfa', position: { x: 300, y: 100 }, data: { label: 'S1', isStartState: false, isAcceptState: false } },
   { id: '3', type: 'dfa', position: { x: 500, y: 100 }, data: { label: 'Accept', isStartState: false, isAcceptState: true } },
 ];
 

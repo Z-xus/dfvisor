@@ -1,19 +1,8 @@
 import { useCallback } from "react";
 import React, { useState } from 'react';
-
+import Layout from './Layout'
 import { Play, BookOpen, Code, Users, Menu, X, ChevronRight } from 'lucide-react';
 
-import {
-    Background,
-    Controls,
-    MiniMap,
-    ReactFlow,
-    addEdge,
-    useNodesState,
-    useEdgesState,
-    ColorMode,
-    type OnConnect,
-} from "@xyflow/react";
 
 import "./App.css";
 import Navbar from "./ui/Navbar";
@@ -35,7 +24,7 @@ import RegexToDFA from "./pages/RegexToDFA";
 const Header = () => (
     <header className="bg-blue-900 text-white py-4">
         <div className="container mx-auto px-4">
-            <h1 className="text-3xl font-bold">Automataous</h1>
+            <h1 className="text-3xl font-bold">StateCraft</h1>
         </div>
     </header>
 );
@@ -48,7 +37,7 @@ const Hero = () => (
                     Explore the Infinite Realms of Automata
                 </h2>
                 <p className="text-xl mb-10 text-gray-300">
-                    Dive into the fascinating world of formal languages and computation with Automataous.
+                    Dive into the fascinating world of formal languages and computation with StateCraft.
                     Unleash the power of abstract machines and discover the beauty of theoretical computer science.
                 </p>
                 <button className="bg-teal-500 text-white font-bold py-3 px-8 rounded-full hover:bg-teal-600 transition duration-300 transform hover:scale-105">
@@ -121,10 +110,12 @@ export default function App() {
     return (
         <Router>
         <Routes>
+        <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/dfatoui" element={<DFAtoUI/>} />
         <Route path="/regextodfa" element={<RegexToDFA/>} />
+        </Route>
         </Routes>
         </Router>
     );
@@ -144,35 +135,4 @@ function Home() {
 }
 
 
-export function Editor() {
-    const [nodes, , onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-    const onConnect: OnConnect = useCallback(
-        (connection) => setEdges((edges) => addEdge(connection, edges)),
-        [setEdges]
-    );
 
-  const colorMode: ColorMode = "white";
-
-    return (
-        <>
-            <div style={{ height: "100vh", width: "100vw" }}>
-                <ReactFlow
-                    nodes={nodes}
-                    nodeTypes={nodeTypes}
-                    onNodesChange={onNodesChange}
-                    edges={edges}
-                    edgeTypes={edgeTypes}
-                    onEdgesChange={onEdgesChange}
-                    onConnect={onConnect}
-                    colorMode={colorMode}
-                    fitView
-                >
-                    <Background />
-                    <MiniMap />
-                    <Controls />
-                </ReactFlow>
-            </div>
-        </>
-    );
-}

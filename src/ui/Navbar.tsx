@@ -6,12 +6,11 @@ const Navbar = () => {
     <nav className="bg-gray-900 py-2 fixed top-0 left-0 right-0 bg-opacity-80 backdrop-blur-md p-4 z-50 border-b border-gray-700">
       <div className="flex justify-between items-center max-w-5xl mx-auto container px-4">
         <Link to="/" className="text-2xl font-bold text-white tracking-wide">
-          Automataous
+          StateCraft
         </Link>
         <div className="flex gap-8">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/about">About</NavLink>
-          <NavLink to="/editor">Editor</NavLink>
           <NavLink to="/dfatoui">DFA From UI</NavLink>
           <NavLink to="/regextodfa">Refex to FA</NavLink>
         </div>

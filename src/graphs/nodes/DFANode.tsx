@@ -27,9 +27,9 @@ const DFANode = ({ data, isConnectable }) => {
             {data.isStartState && (
                 <div style={{
                     position: 'absolute',
-                    top: '-15px',
+                    top: '15px',
                     left: '50%',
-                    transform: 'translateX(-50%)',
+                    transform: 'translateX(-260%)',
                     fontSize: '24px',
                     color: '#777',
                     textShadow: '0 0 5px rgba(0, 0, 0, 0.2)', // Glow effect for start arrow
