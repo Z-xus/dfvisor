@@ -25,6 +25,7 @@ import "@xyflow/react/dist/style.css";
 import { initialNodes, nodeTypes } from "./graphs/nodes";
 import { initialEdges, edgeTypes } from "./graphs/edges";
 import DFAtoUI from "./pages/DFAtoUI";
+import RegexToDFA from "./pages/RegexToDFA";
 
 
 const Header = () => (
@@ -119,6 +120,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/dfatoui" element={<DFAtoUI/>} />
+        <Route path="/regextodfa" element={<RegexToDFA/>} />
         </Routes>
         </Router>
     );
