@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export function runSimulation(
   cyRef: Cytoscape.Core,
-  result: object,
+  result: any,
 ): Promise<void> {
   return new Promise((resolve) => {
     if (!cyRef.current) {

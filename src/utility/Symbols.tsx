@@ -1,21 +1,30 @@
-import { useEffect } from "react";
+interface Automaton {
+  NFA?: {
+    regexp: {
+      symbols: (string | number)[];
+    };
+  };
+  regexp: {
+    symbols: (string | number)[];
+  };
+}
 
 interface SymbolsProps {
-  automata: object;
+  automata: Automaton;
 }
 
 export default function Symbols({ automata }: SymbolsProps) {
-  let symbols;
-  // If the automaton is a DFA
+  let symbols: (string | number)[];
+
+  // If the automaton is a NFA
   if (automata.NFA) {
     symbols = automata.NFA.regexp.symbols;
-    //
-    // If it is a NFA
   } else {
+    // If it is a DFA
     symbols = automata.regexp.symbols;
   }
 
-  symbols.sort((a: number | string, b: number | string) => {
+  symbols.sort((a: string | number, b: string | number) => {
     // Convert both elements to strings for comparison
     const strA = String(a);
     const strB = String(b);
