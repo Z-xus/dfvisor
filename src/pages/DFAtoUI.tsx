@@ -19,7 +19,7 @@ export default function DFAtoUI() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [input, setInput] = useState("");
-  const [validationResult, setValidationResult] = useState(null);
+  const [validationResult, setValidationResult] = useState<string | null>(null);
   const [startState, setStartState] = useState("");
   const [endState, setEndState] = useState("");
   const [transitionSymbol, setTransitionSymbol] = useState("");
@@ -88,7 +88,7 @@ export default function DFAtoUI() {
   }, [setNodes, setEdges]);
 
 
-  const validateString = async (inputString) => {
+  const validateString = async (inputString: string): Promise<boolean> => {
     let currentState =  nodes.find(node => node.data.isStartState)?.id; // Start at the start state
 
     for (const char of inputString) {
@@ -113,13 +113,13 @@ export default function DFAtoUI() {
     // Check if the current state is an accepting state
     const finalState = nodes.find(node => node.id === currentState);
     setCurrentNodeId(finalState?.data.isAcceptState ? currentState : null); // Highlight if accepting state
-    return finalState?.data.isAcceptState;
+    return finalState?.data.isAcceptState == undefined ? false : finalState.data.isAcceptState;
   };
 
-  const handleValidateInput = () => {
-    const isValid = validateString(input);
-    setValidationResult(isValid);
-  };
+  const handleValidateInput = async () => {
+    const isValid: boolean = await validateString(input);
+    setValidationResult(isValid ? "Accepted" : "Rejected");
+  }
 
     const [isOpen, setIsOpen] = useState(false);
 

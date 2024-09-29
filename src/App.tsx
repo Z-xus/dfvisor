@@ -1,4 +1,6 @@
 import { useCallback } from "react";
+import React, { useState } from 'react';
+
 import { Play, BookOpen, Code, Users, Menu, X, ChevronRight } from 'lucide-react';
 
 import {
@@ -25,6 +27,8 @@ import "@xyflow/react/dist/style.css";
 import { initialNodes, nodeTypes } from "./graphs/nodes";
 import { initialEdges, edgeTypes } from "./graphs/edges";
 import DFAtoUI from "./pages/DFAtoUI";
+import RegexToDFA from "./pages/RegexToDFA";
+import Trial from "./pages/Trial";
 
 
 
@@ -116,11 +120,13 @@ const CTA = () => (
 export default function App() {
     return (
         <Router>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/editor" element={<DFAtoUI />} />
-            </Routes>
+        <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/dfatoui" element={<DFAtoUI/>} />
+        <Route path="/regextodfa" element={<RegexToDFA/>} />
+        <Route path="/trial"  element={<Trial/>} />
+        </Routes>
         </Router>
     );
 }
@@ -147,7 +153,7 @@ export function Editor() {
         [setEdges]
     );
 
-    const colorMode: ColorMode = "dark";
+  const colorMode: ColorMode = "white";
 
     return (
         <>
