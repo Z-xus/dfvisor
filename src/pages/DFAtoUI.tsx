@@ -128,7 +128,7 @@ export default function DFAtoUI() {
       {/* Floating Sidebar */}
       <div 
       className={`fixed left-0 top-0 h-screen bg-gray-900 transition-all duration-300 ease-in-out z-10 ${
-  isOpen ? 'w-full md:w-1/3' : 'w-2 hover:w-full md:hover:w-1/3'
+  isOpen ? 'w-64 md:w-1/4' : 'w-2 hover:w-64 md:hover:w-1/4'
 }`}
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
