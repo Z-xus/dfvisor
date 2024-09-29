@@ -190,11 +190,14 @@ export default function DFAtoUI() {
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           colorMode={colorMode}
+          proOptions={{
+            hideAttribution: true
+          }}
           fitView
         >
           <Background />
           <MiniMap />
-          <Controls />
+          <Controls style={{ gap: "0.3rem" }} />
         </ReactFlow>
       </div>
     </div>
