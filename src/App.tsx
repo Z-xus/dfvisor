@@ -1,5 +1,4 @@
 import { useCallback } from "react";
-import React, { useState } from 'react';
 import { Play, BookOpen, Code, Users, Menu, X, ChevronRight } from 'lucide-react';
 
 import {
@@ -14,17 +13,19 @@ import {
   type OnConnect,
 } from "@xyflow/react";
 
+import "./App.css";
 import Navbar from "./ui/Navbar";
 import About from "./ui/About";
 import Footer from "./ui/footer";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import { SelectionDisplay } from "./utils";
 
 import "@xyflow/react/dist/style.css";
 
 import { initialNodes, nodeTypes } from "./graphs/nodes";
 import { initialEdges, edgeTypes } from "./graphs/edges";
 import DFAtoUI from "./pages/DFAtoUI";
+
 
 
 const Header = () => (
@@ -136,6 +137,8 @@ function Home() {
     <Footer />
   </div>    );
 }
+
+
 export function Editor() {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);

@@ -1,4 +1,5 @@
 import type { Edge, EdgeTypes } from "@xyflow/react";
+import FloatingEdge from "./FloatingEdge";
 
 export const initialEdges = [
     { id: "a->c", source: "a", target: "c", animated: true },
@@ -7,5 +8,5 @@ export const initialEdges = [
 ] satisfies Edge[];
 
 export const edgeTypes = {
-    // Add your custom edge types here!
+    floating: FloatingEdge,
 } satisfies EdgeTypes;

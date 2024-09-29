@@ -79,6 +79,11 @@ export default function DFAtoUI() {
     }
   };
 
+  const handleDeleteElements = useCallback(() => {
+  setNodes((nds) => nds.filter((node) => !node.selected));
+  setEdges((eds) => eds.filter((edge) => !edge.selected));
+  }, [setNodes, setEdges]);
+
   const validateString = (inputString) => {
     let currentState = nodes.find(node => node.data.isStartState)?.id; // Start at the start state
 
@@ -110,7 +115,9 @@ export default function DFAtoUI() {
         <h3 className="text-lg font-semibold mb-4">Add a State:</h3>
         <NodeCreatorButton onAddNode={addNode} />
 
+
         <h3 className="text-lg font-semibold mt-6">Add an Edge:</h3>
+
 
         <h3 className="text-lg font-semibold mt-4">Select Start State:</h3>
         <select
@@ -154,6 +161,13 @@ export default function DFAtoUI() {
           className="mt-4 w-full p-2 bg-black-600 rounded border-solid-white cursor-pointer text-white hover:bg-black-500 transition-colors"
         >
           Add Edge
+        </button>
+
+        <button
+          onClick={handleDeleteElements}
+          className="mt-4 w-full p-2 bg-black-600 rounded border-solid-white cursor-pointer text-white hover:bg-black-500 transition-colors"
+        >
+          Delete Elements
         </button>
 
         <h3 className="text-lg font-semibold mt-6">Validate String:</h3>

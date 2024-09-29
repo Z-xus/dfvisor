@@ -1,7 +1,9 @@
 import React, { memo } from 'react';
 import { Handle, Position } from '@xyflow/react';
 
+
 const DFANode = ({ data, isConnectable }) => {
+
   return (
     <div style={{
       padding: '10px',
