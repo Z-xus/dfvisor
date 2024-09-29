@@ -11,9 +11,10 @@ interface Automaton {
 
 interface SymbolsProps {
   automata: Automaton;
+  className?: string;
 }
 
-export default function Symbols({ automata }: SymbolsProps) {
+export default function Symbols({ automata, className }: SymbolsProps) {
   let symbols: (string | number)[];
 
   // If the automaton is a NFA
@@ -40,7 +41,7 @@ export default function Symbols({ automata }: SymbolsProps) {
   });
 
   return (
-    <div className="flex-none">
+    <div className={`flex-none ${className}`}>
       <h2 className="font-bold text-center text-xl">Symbols</h2>
       <p className="text-md text-center">
         &Sigma; = {"{"}

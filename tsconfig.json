@@ -7,5 +7,17 @@
     {
       "path": "./tsconfig.node.json"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "outDir": "./dist",
+    "noEmitOnError": true,
+    "skipLibCheck": true, // Skips type checking for all declaration files
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
 }

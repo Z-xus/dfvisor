@@ -7,6 +7,7 @@ import {
   addEdge,
   useNodesState,
   useEdgesState,
+  Edge,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { initialNodes, nodeTypes } from "../graphs/nodes";
@@ -17,7 +18,7 @@ import NodeCreatorButton from "../graphs/nodes/NodeCreatorButton";
 
 export default function DFAtoUI() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>(initialEdges);
   const [input, setInput] = useState("");
   const [validationResult, setValidationResult] = useState<string | null>(null);
   const [startState, setStartState] = useState("");
@@ -83,13 +84,13 @@ export default function DFAtoUI() {
   };
 
   const handleDeleteElements = useCallback(() => {
-  setNodes((nds) => nds.filter((node) => !node.selected));
-  setEdges((eds) => eds.filter((edge) => !edge.selected));
+    setNodes((nds) => nds.filter((node) => !node.selected));
+    setEdges((eds) => eds.filter((edge) => !edge.selected));
   }, [setNodes, setEdges]);
 
 
   const validateString = async (inputString: string): Promise<boolean> => {
-    let currentState =  nodes.find(node => node.data.isStartState)?.id; // Start at the start state
+    let currentState = nodes.find(node => node.data.isStartState)?.id; // Start at the start state
 
     for (const char of inputString) {
       // Highlight the current node
@@ -121,15 +122,14 @@ export default function DFAtoUI() {
     setValidationResult(isValid ? "Accepted" : "Rejected");
   }
 
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="h-screen w-screen flex bg-black text-white">
       {/* Floating Sidebar */}
-      <div 
-      className={`fixed left-0 top-0 h-screen bg-gray-900 transition-all duration-300 ease-in-out z-10 ${
-  isOpen ? 'w-64 md:w-1/4' : 'w-2 hover:w-64 md:hover:w-1/4'
-}`}
+      <div
+        className={`fixed left-0 top-0 h-screen bg-gray-900 transition-all duration-300 ease-in-out z-10 ${isOpen ? 'w-64 md:w-1/4' : 'w-2 hover:w-64 md:hover:w-1/4'
+          }`}
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
       >
