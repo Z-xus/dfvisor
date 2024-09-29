@@ -23,7 +23,7 @@ const TeamMember = ({ name, role, image }) => (
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="w-screen min-h-screen bg-gray-900 text-white">
       <Navbar />
       <main className="pt-24 pb-12">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -55,19 +55,19 @@ const AboutPage = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <TeamMember 
-                name="Dr. Alice Chen" 
+                name="Naufil Asar" 
                 role="Founder & Lead Theorist" 
-                image="/api/placeholder/150/150"
+                image="https://avatars.githubusercontent.com/u/145439464?v=4"
               />
               <TeamMember 
-                name="Bob Smith" 
+                name="Manjiri Chavande" 
                 role="Senior Developer" 
-                image="/api/placeholder/150/150"
+                image="https://avatars.githubusercontent.com/u/82377810?v=4"
               />
               <TeamMember 
-                name="Carol Davis" 
+                name="Sumit Patel" 
                 role="UX Designer" 
-                image="/api/placeholder/150/150"
+                image="https://avatars.githubusercontent.com/u/89197795?v=4"
               />
             </div>
           </AboutSection>
