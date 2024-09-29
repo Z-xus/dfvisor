@@ -24,6 +24,7 @@ import "@xyflow/react/dist/style.css";
 
 import { initialNodes, nodeTypes } from "./graphs/nodes";
 import { initialEdges, edgeTypes } from "./graphs/edges";
+import DFAtoUI from "./pages/DFAtoUI";
 
 
 const Header = () => (
@@ -117,6 +118,7 @@ export default function App() {
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/dfatoui" element={<DFAtoUI/>} />
         </Routes>
         </Router>
     );
