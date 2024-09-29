@@ -12,6 +12,8 @@ const Navbar = () => {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/editor">Editor</NavLink>
+          <NavLink to="/dfatoui">DFA From UI</NavLink>
+          <NavLink to="/regextodfa">Refex to FA</NavLink>
         </div>
       </div>
     </nav>

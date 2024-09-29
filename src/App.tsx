@@ -28,7 +28,7 @@ import { initialNodes, nodeTypes } from "./graphs/nodes";
 import { initialEdges, edgeTypes } from "./graphs/edges";
 import DFAtoUI from "./pages/DFAtoUI";
 import RegexToDFA from "./pages/RegexToDFA";
-import Trial from "./pages/Trial";
+
 
 
 
@@ -125,7 +125,6 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/dfatoui" element={<DFAtoUI/>} />
         <Route path="/regextodfa" element={<RegexToDFA/>} />
-        <Route path="/trial"  element={<Trial/>} />
         </Routes>
         </Router>
     );
