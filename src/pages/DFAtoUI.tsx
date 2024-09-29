@@ -21,7 +21,8 @@ export default function DFAtoUI() {
   const [startState, setStartState] = useState("");
   const [endState, setEndState] = useState("");
   const [transitionSymbol, setTransitionSymbol] = useState("");
-  const colorMode = "dark";
+  const [currentNodeId, setCurrentNodeId] = useState(null); // New state for current node
+  const colorMode = "light";
 
   const onConnect = useCallback(
     (params) => {
@@ -65,7 +66,7 @@ export default function DFAtoUI() {
             source: startState,
             target: endState,
             label: transitionSymbol,
-            animated: true,
+            animated: false,
           },
           eds
         )
@@ -79,23 +80,31 @@ export default function DFAtoUI() {
     }
   };
 
-  const validateString = (inputString) => {
+  const validateString = async (inputString) => {
     let currentState = nodes.find(node => node.data.isStartState)?.id; // Start at the start state
 
     for (const char of inputString) {
+      // Highlight the current node
+      setCurrentNodeId(currentState);
+
       // Find the next state based on current state and transition symbol
       const edge = edges.find(e => e.source === currentState && e.label === char);
+
+      //console.log(`Current state: ${currentState}, Input symbol: ${char}, Next state: ${edge?.target}`);
 
       if (edge) {
         currentState = edge.target; // Move to the next state
       } else {
+        setCurrentNodeId(null);
         // If there is no valid transition, reject the string
         return false;
       }
+      await new Promise(resolve => setTimeout(resolve, 1000)); // 1000 ms delay
     }
 
     // Check if the current state is an accepting state
     const finalState = nodes.find(node => node.id === currentState);
+    setCurrentNodeId(finalState?.data.isAcceptState ? currentState : null); // Highlight if accepting state
     return finalState?.data.isAcceptState;
   };
 
@@ -182,7 +191,13 @@ export default function DFAtoUI() {
 
       <div className="flex-1 mx-5 relative">
         <ReactFlow
-          nodes={nodes}
+          nodes={nodes.map(node => ({
+            ...node,
+            data: {
+              ...node.data,
+              isCurrentNode: node.id === currentNodeId, // Pass current state info to node
+            },
+          }))}
           nodeTypes={nodeTypes}
           onNodesChange={onNodesChange}
           edges={edges}
@@ -190,11 +205,14 @@ export default function DFAtoUI() {
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           colorMode={colorMode}
+          proOptions={{
+            hideAttribution: true
+          }}
           fitView
         >
-          <Background />
+          <Background bgColor="white" />
           <MiniMap />
-          <Controls />
+          <Controls style={{ gap: "0.3rem", color: "black" }} />
         </ReactFlow>
       </div>
     </div>

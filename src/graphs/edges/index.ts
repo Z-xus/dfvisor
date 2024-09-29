@@ -1,4 +1,6 @@
 import type { Edge, EdgeTypes } from "@xyflow/react";
+import { AnimatedSVGEdge } from "./AnimatedSVGEdge";
+import SelfConnecting from "./SelfLoopEdge";
 
 export const initialEdges = [
     { id: "a->c", source: "a", target: "c", animated: true },
@@ -8,4 +10,7 @@ export const initialEdges = [
 
 export const edgeTypes = {
     // Add your custom edge types here!
+    //
+    animatedSvg: AnimatedSVGEdge,
+    selfLoop: SelfConnecting
 } satisfies EdgeTypes;
