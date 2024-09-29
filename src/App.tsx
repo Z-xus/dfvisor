@@ -30,24 +30,34 @@ const Header = () => (
 );
 
 const Hero = () => (
-    <section className="pt-24 pb-32 bg-gray-900 text-white relative overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-                <h2 className="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500">
-                    Explore the Infinite Realms of Automata
-                </h2>
-                <p className="text-xl mb-10 text-gray-300">
-                    Dive into the fascinating world of formal languages and computation with StateCraft.
-                    Unleash the power of abstract machines and discover the beauty of theoretical computer science.
-                </p>
-                <button className="bg-teal-500 text-white font-bold py-3 px-8 rounded-full hover:bg-teal-600 transition duration-300 transform hover:scale-105">
-                    Begin Your Journey
-                </button>
-            </div>
-        </div>
-        <div className="absolute inset-0 bg-[url('/api/placeholder/1200/800')] opacity-10 bg-cover bg-center"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900"></div>
-    </section>
+  <section className="pt-24 pb-32 bg-gray-900 text-white relative overflow-hidden">
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="max-w-3xl mx-auto text-center">
+      <h2 className="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500 animate-glow">
+        Explore the Infinite Realms of Automata
+      </h2>
+      <p className="text-xl mb-10 text-gray-300">
+        Dive into the fascinating world of formal languages and computation with StateCraft.
+        Unleash the power of abstract machines and discover the beauty of theoretical computer science.
+      </p>
+      <button className="bg-teal-500 text-white font-bold py-3 px-8 rounded-full hover:bg-teal-600 transition duration-300 transform hover:scale-105">
+        Begin Your Journey
+      </button>
+    </div>
+  </div>
+  <div className="absolute inset-0 bg-[url('/api/placeholder/1200/800')] opacity-10 bg-cover bg-center"></div>
+  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900"></div>
+  
+  {/* Background Shapes */}
+  <div className="absolute inset-0 pointer-events-none">
+    <svg className="w-full h-full" viewBox="0 0 1200 800">
+      <circle cx="300" cy="500" r="200" fill="rgba(255, 255, 255, 0.05)" className="animate-pulse" />
+      <circle cx="900" cy="200" r="150" fill="rgba(255, 255, 255, 0.05)" className="animate-pulse" />
+    </svg>
+  </div>
+</section>
+
+
 );
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
