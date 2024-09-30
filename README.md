@@ -36,6 +36,7 @@ StateCraft is built using cutting-edge web technologies to ensure a scalable and
 - **React Flow** 🌀: Enabling dynamic visualizations of finite automata and state machines.
 - **Orkes** 🧠: Automating workflows and ensuring smooth task execution in the background.
 - **Tailwind CSS** 🎨: Crafting a responsive, sleek UI that’s not only functional but also visually appealing.
+- **Cytoscape.js** 🕸️: For graph theory visualizations and advanced interactive state machine diagrams.
 
 ---
 
