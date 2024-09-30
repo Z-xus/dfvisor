@@ -1,5 +1,5 @@
 # 🎓 StateCraft: Empowering Students with Visualized Theory of Computation
-🌐 [Visit StateCraft](https://statecraft-by-archangels.web.app/)
+🌐 [Visit StateCraft](https://statecraft-alpha.vercel.app/)
 
 **StateCraft** is an innovative educational platform designed to help computer science students master the **Theory of Computation (TOC)** 🌟 through engaging animations and visualizations. Concepts like **Deterministic Finite Automata (DFA)**, **Non-Deterministic Finite Automata (NFA)**, and **Regular Expressions** can be difficult to grasp when presented solely through text and equations. **StateCraft** bridges the gap by offering interactive visual aids 🧩, enabling students to intuitively understand complex topics. 
 
@@ -42,4 +42,4 @@ StateCraft is built using cutting-edge web technologies to ensure a scalable and
 
 **StateCraft** is on a mission to transform how students approach abstract computer science concepts, equipping them with the tools they need to succeed 🎓 and thrive in their academic journey and beyond 🚀.
 
-💡 Ready to start your journey? [Begin Now!](https://statecraft-by-archangels.web.app/) 🎉
+💡 Ready to start your journey? [Begin Now!](https://statecraft-alpha.vercel.app/) 🎉
