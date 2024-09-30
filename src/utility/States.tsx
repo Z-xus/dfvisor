@@ -119,13 +119,17 @@ export function StatesTablemDFA({ automata }: StatesTableProps) {
             ([label, identicals]) => (
               <li key={label} className="text-md">
                 <span className="font-bold">{label}</span> is identical to{" "}
-                {identicals.map((identical, index, array) => (
-                  <React.Fragment key={index}>
-                    <span className="font-bold">{identical}</span>
-                    {index < array.length - 2 && ", "}
-                    {index === array.length - 2 && " and "}
-                  </React.Fragment>
-                ))}
+                {Array.isArray(identicals) ? (
+                  identicals.map((identical, index, array) => (
+                    <React.Fragment key={index}>
+                      <span className="font-bold">{identical}</span>
+                      {index < array.length - 2 && ", "}
+                      {index === array.length - 2 && " and "}
+                    </React.Fragment>
+                  ))
+                ) : (
+                  <span className="font-bold">N/A</span> // or any other placeholder you'd like
+                )}
                 .
               </li>
             ),
