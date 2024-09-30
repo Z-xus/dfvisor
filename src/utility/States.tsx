@@ -7,11 +7,35 @@ import {
   TableRow,
 } from "../ui/table";
 
-interface StatesTableProps {
-  automata: object;
+interface State {
+  label: string;
+  states: State[];
 }
 
-export function StatesTableuDFA({ automata }: StatesTableProps) {
+//interface IdentifiableState {
+//  [label: string]: string[];
+//}
+
+interface Automaton {
+  NFA?: boolean;
+  uDFA?: boolean;
+  states: {
+    table: State[];
+  };
+  equivalent_states: {
+    table: State[];
+  };
+  identifiables: {
+    table: Map<string, string[]>;
+  };
+}
+
+interface StatesTableProps {
+  automata: Automaton;
+  className?: string;
+}
+
+export function StatesTableuDFA({ automata, className }: StatesTableProps) {
   // If the automaton is NOT a DFA
   if (!automata.NFA) return <></>;
 
@@ -33,14 +57,14 @@ export function StatesTableuDFA({ automata }: StatesTableProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {Array.from(automata.states.table).map((state, index) => (
+          {automata.states.table.map((state, index) => (
             <TableRow key={index}>
               <TableCell className="text-md text-center">
                 {state.label}
               </TableCell>
               <TableCell className="text-md text-center">
                 {"{"}
-                {state.states.map((state) => state.label).join(", ")}
+                {state.states.map((innerState) => innerState.label).join(", ")}
                 {"}"}
               </TableCell>
             </TableRow>
@@ -70,14 +94,14 @@ export function StatesTablemDFA({ automata }: StatesTableProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {Array.from(automata.equivalent_states.table).map((state, index) => (
+          {automata.equivalent_states.table.map((state, index) => (
             <TableRow key={index}>
               <TableCell className="text-md text-center">
                 Significants({state.label})
               </TableCell>
               <TableCell className="text-md text-center">
                 {"{"}
-                {state.states.map((state) => state.label).join(", ")}
+                {state.states.map((innerState) => innerState.label).join(", ")}
                 {"}"}
               </TableCell>
             </TableRow>
@@ -87,10 +111,10 @@ export function StatesTablemDFA({ automata }: StatesTableProps) {
       <div>
         <ul className="list-disc pl-10 space-y-2 mt-5">
           {Array.from(automata.identifiables.table.entries()).map(
-            ([label, identicals]: unknown) => (
+            ([label, identicals]) => (
               <li key={label} className="text-md">
                 <span className="font-bold">{label}</span> is identical to{" "}
-                {Array.from(identicals).map((identical, index, array) => (
+                {identicals.map((identical, index, array) => (
                   <>
                     <span key={index} className="font-bold">
                       {identical}

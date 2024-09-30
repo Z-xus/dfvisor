@@ -1,22 +1,22 @@
 import { Position, MarkerType } from '@xyflow/react';
-import { useState } from 'react';
-import {useOnSelectionChange } from '@xyflow/react';
- 
+import { useCallback, useState } from 'react';
+import { useOnSelectionChange } from '@xyflow/react';
+
 export function SelectionDisplay() {
   const [selectedNodes, setSelectedNodes] = useState([]);
   const [selectedEdges, setSelectedEdges] = useState([]);
- 
+
   // the passed handler has to be memoized, otherwise the hook will not work correctly
   const onChange = useCallback(({ nodes, edges }) => {
     setSelectedNodes(nodes.map((node) => node.id));
     setSelectedEdges(edges.map((edge) => edge.id));
   }, []);
- 
+
   useOnSelectionChange({
     onChange,
   });
   console.log(selectedNodes, selectedEdges);
- 
+
   return (
     <div>
       <p>Selected nodes: {selectedNodes.join(', ')}</p>

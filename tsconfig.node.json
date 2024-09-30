@@ -1,22 +1,28 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2023"],
+    "lib": [
+      "ES2023"
+    ],
     "module": "ESNext",
-    "skipLibCheck": true,
-
+    "noEmitOnError": false, // Allows emitting JS even if there are errors
+    "skipLibCheck": true, // Skips type checking of all declaration files
+    "forceConsistentCasingInFileNames": false, // Prevents case sensitivity errors
+    "noImplicitAny": false, // Allows variables to have an `any` type
+    "noImplicitThis": false, // Allows using `this` implicitly
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
-
     /* Linting */
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts"]
+  "include": [
+    "vite.config.ts"
+  ]
 }

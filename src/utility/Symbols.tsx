@@ -1,21 +1,31 @@
-import { useEffect } from "react";
-
-interface SymbolsProps {
-  automata: object;
+interface Automaton {
+  NFA?: {
+    regexp: {
+      symbols: (string | number)[];
+    };
+  };
+  regexp: {
+    symbols: (string | number)[];
+  };
 }
 
-export default function Symbols({ automata }: SymbolsProps) {
-  let symbols;
-  // If the automaton is a DFA
+interface SymbolsProps {
+  automata: Automaton;
+  className?: string;
+}
+
+export default function Symbols({ automata, className }: SymbolsProps) {
+  let symbols: (string | number)[];
+
+  // If the automaton is a NFA
   if (automata.NFA) {
     symbols = automata.NFA.regexp.symbols;
-    //
-    // If it is a NFA
   } else {
+    // If it is a DFA
     symbols = automata.regexp.symbols;
   }
 
-  symbols.sort((a: number | string, b: number | string) => {
+  symbols.sort((a: string | number, b: string | number) => {
     // Convert both elements to strings for comparison
     const strA = String(a);
     const strB = String(b);
@@ -31,7 +41,7 @@ export default function Symbols({ automata }: SymbolsProps) {
   });
 
   return (
-    <div className="flex-none">
+    <div className={`flex-none ${className}`}>
       <h2 className="font-bold text-center text-xl">Symbols</h2>
       <p className="text-md text-center">
         &Sigma; = {"{"}

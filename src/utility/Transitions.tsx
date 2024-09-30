@@ -7,19 +7,40 @@ import {
   TableRow,
 } from "../ui/table";
 
-interface TransitionsTableProps {
-  automata: object;
+interface Transition {
+  label: string;
+  transitions: Map<string | number, string[] | string>;
 }
 
-export default function TransitionsTable({ automata }: TransitionsTableProps) {
-  let symbols;
-  // If the automaton is a DFA
+interface Automaton {
+  NFA?: {
+    regexp: {
+      symbols: (string | number)[];
+    };
+  };
+  regexp: {
+    symbols: (string | number)[];
+  };
+  empty_symbol?: string;
+  transitions: {
+    table: Transition[];
+  };
+}
+
+interface TransitionsTableProps {
+  automata: Automaton;
+  className?: string;
+}
+
+export default function TransitionsTable({ automata, className }: TransitionsTableProps) {
+  let symbols: (string | number)[];
+
+  // If the automaton is a NFA
   if (automata.NFA) {
     symbols = automata.NFA.regexp.symbols;
-    //
-    // If it is a NFA
   } else {
-    symbols = automata.regexp.symbols.concat(automata.empty_symbol);
+    // If it is a DFA
+    symbols = automata.regexp.symbols.concat(automata.empty_symbol || []);
   }
 
   return (
@@ -31,8 +52,8 @@ export default function TransitionsTable({ automata }: TransitionsTableProps) {
             <TableHead className="font-bold text-center text-lg">
               State
             </TableHead>
-            {symbols.map((symbol, _) => (
-              <TableHead key={_} className="font-bold text-center text-lg">
+            {symbols.map((symbol, index) => (
+              <TableHead key={index} className="font-bold text-center text-lg">
                 {symbol}
               </TableHead>
             ))}
@@ -45,19 +66,18 @@ export default function TransitionsTable({ automata }: TransitionsTableProps) {
                 {transition.label}
               </TableCell>
               {symbols.map((symbol, symbolIndex) => {
-                if (transition.transitions.has(symbol)) {
+                const transitionValue = transition.transitions.get(symbol);
+                if (transitionValue) {
                   return (
                     <TableCell
                       key={symbolIndex}
                       className="text-md text-center"
                     >
-                      {Array.isArray(transition.transitions.get(symbol))
-                        ? transition.transitions.get(symbol).length > 1
-                          ? "{" +
-                            transition.transitions.get(symbol).join(", ") +
-                            "}"
-                          : transition.transitions.get(symbol)
-                        : transition.transitions.get(symbol)}
+                      {Array.isArray(transitionValue)
+                        ? transitionValue.length > 1
+                          ? "{" + transitionValue.join(", ") + "}"
+                          : transitionValue
+                        : transitionValue}
                     </TableCell>
                   );
                 } else {

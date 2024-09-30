@@ -1,6 +1,11 @@
-import type { Edge, EdgeTypes } from "@xyflow/react";
+import type { Edge as BaseEdge, EdgeTypes } from "@xyflow/react";
 import { AnimatedSVGEdge } from "./AnimatedSVGEdge";
 import SelfConnecting from "./SelfLoopEdge";
+
+interface Edge extends BaseEdge {
+    animated?: boolean;
+    label?: string;
+}
 
 export const initialEdges = [
     { id: "a->c", source: "a", target: "c", animated: true },
