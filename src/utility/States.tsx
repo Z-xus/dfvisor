@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Table,
   TableBody,
@@ -35,8 +36,8 @@ interface StatesTableProps {
   className?: string;
 }
 
-export function StatesTableuDFA({ automata, className }: StatesTableProps) {
-  // If the automaton is NOT a DFA
+export function StatesTableuDFA({ automata }: StatesTableProps) {
+  // If the automaton is NOT an NFA
   if (!automata.NFA) return <></>;
 
   // If the automaton is NOT a uDFA
@@ -48,27 +49,29 @@ export function StatesTableuDFA({ automata, className }: StatesTableProps) {
       <Table className="select-none">
         <TableHeader>
           <TableRow>
-            <TableHead className="font-bold text-center text-lg">
-              State
-            </TableHead>
-            <TableHead className="font-bold text-center text-lg">
-              NFA equivalent states
-            </TableHead>
+            <TableHead className="font-bold text-center text-lg">State</TableHead>
+            <TableHead className="font-bold text-center text-lg">NFA equivalent states</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {automata.states.table.map((state, index) => (
-            <TableRow key={index}>
-              <TableCell className="text-md text-center">
-                {state.label}
-              </TableCell>
-              <TableCell className="text-md text-center">
-                {"{"}
-                {state.states.map((innerState) => innerState.label).join(", ")}
-                {"}"}
+          {Array.isArray(automata.states.table) && automata.states.table.length > 0 ? (
+            automata.states.table.map((state, index) => (
+              <TableRow key={index}>
+                <TableCell className="text-md text-center">{state.label}</TableCell>
+                <TableCell className="text-md text-center">
+                  {"{"}
+                  {state.states.map((innerState) => innerState.label).join(", ")}
+                  {"}"}
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell className="text-md text-center" colSpan={2}>
+                No states available
               </TableCell>
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
     </div>
@@ -85,43 +88,43 @@ export function StatesTablemDFA({ automata }: StatesTableProps) {
       <Table className="select-none">
         <TableHeader>
           <TableRow>
-            <TableHead className="font-bold text-center text-lg">
-              State
-            </TableHead>
-            <TableHead className="font-bold text-center text-lg">
-              NFA significant states
-            </TableHead>
+            <TableHead className="font-bold text-center text-lg">State</TableHead>
+            <TableHead className="font-bold text-center text-lg">NFA significant states</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {automata.equivalent_states.table.map((state, index) => (
-            <TableRow key={index}>
-              <TableCell className="text-md text-center">
-                Significants({state.label})
-              </TableCell>
-              <TableCell className="text-md text-center">
-                {"{"}
-                {state.states.map((innerState) => innerState.label).join(", ")}
-                {"}"}
+          {Array.isArray(automata.equivalent_states.table) && automata.equivalent_states.table.length > 0 ? (
+            automata.equivalent_states.table.map((state, index) => (
+              <TableRow key={index}>
+                <TableCell className="text-md text-center">Significants({state.label})</TableCell>
+                <TableCell className="text-md text-center">
+                  {"{"}
+                  {state.states.map((innerState) => innerState.label).join(", ")}
+                  {"}"}
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell className="text-md text-center" colSpan={2}>
+                No equivalent states available
               </TableCell>
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
       <div>
         <ul className="list-disc pl-10 space-y-2 mt-5">
-          {Array.from(automata.identifiables.table.entries()).map(
+          {automata.identifiables.table && Array.from(automata.identifiables.table.entries()).map(
             ([label, identicals]) => (
               <li key={label} className="text-md">
                 <span className="font-bold">{label}</span> is identical to{" "}
                 {identicals.map((identical, index, array) => (
-                  <>
-                    <span key={index} className="font-bold">
-                      {identical}
-                    </span>
+                  <React.Fragment key={index}>
+                    <span className="font-bold">{identical}</span>
                     {index < array.length - 2 && ", "}
                     {index === array.length - 2 && " and "}
-                  </>
+                  </React.Fragment>
                 ))}
                 .
               </li>
